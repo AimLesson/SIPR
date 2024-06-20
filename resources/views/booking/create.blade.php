@@ -28,9 +28,9 @@
                             <select id="id_rooms" name="id_rooms"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required>
-                                @foreach ($rooms as $room)
-                                    <option value="{{ $room->id }}">{{ $room->nama_ruang }}</option>
-                                @endforeach
+                                <option value="1">Ruang Pangripta</option>
+                                <option value="2">Ruang Aula</option>
+                                <option value="3">Ruang Tengah</option>
                             </select>
                         </div>
                         <div>
@@ -61,11 +61,7 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required />
                         </div>
-                        <div>
-                            <input type="hidden" id="nama_rooms" name="nama_rooms"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Nama Room" value="{{ $room->nama_ruang }}" required />
-                        </div>
+                        <input type="hidden" id="nama_rooms" name="nama_rooms" value="" />
                     </div>
                     <button type="submit"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
@@ -76,6 +72,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
+        document.getElementById('id_rooms').addEventListener('change', function() {
+            document.getElementById('nama_rooms').value = this.options[this.selectedIndex].text;
+        });
+
+        // Set initial value
+        document.getElementById('nama_rooms').value = document.getElementById('id_rooms').options[document.getElementById('id_rooms').selectedIndex].text;
+
         @if (session('success'))
             toastr.success("{{ session('success') }}");
         @endif
