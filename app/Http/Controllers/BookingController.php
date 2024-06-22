@@ -31,6 +31,21 @@ class BookingController extends Controller
             'date' => 'required|date',
             'start' => 'required|date_format:H:i',
             'finish' => 'required|date_format:H:i|after:start',
+        ], [
+            'start.required' => 'Kolom mulai wajib diisi.',
+            'start.date_format' => 'Format kolom waktu tidak sesuai.',
+            'finish.required' => 'Kolom selesai wajib diisi.',
+            'finish.date_format' => 'Format kolom waktu tidak sesuai.',
+            'finish.after' => 'Waktu selesai harus setelah waktu mulai.',
+            'nama.required' => 'Kolom nama wajib diisi.',
+            'acara.required' => 'Kolom acara wajib diisi.',
+            'id_rooms.required' => 'Kolom ID ruangan wajib diisi.',
+            'id_rooms.exists' => 'Ruangan yang dipilih tidak valid.',
+            'nama_rooms.required' => 'Kolom nama ruangan wajib diisi.',
+            'asalbidang.required' => 'Kolom asal bidang wajib diisi.',
+            'asalbidang.in' => 'Asal bidang tidak valid.',
+            'date.required' => 'Kolom tanggal wajib diisi.',
+            'date.date' => 'Format kolom tanggal tidak valid.',
         ]);
 
         if (!Event::isRoomAvailable($request->id_rooms, $request->start, $request->finish, $request->date)) {
@@ -59,6 +74,21 @@ class BookingController extends Controller
             'date' => 'required|date',
             'start' => 'required|date_format:H:i',
             'finish' => 'required|date_format:H:i|after:start',
+        ], [
+            'start.required' => 'Kolom mulai wajib diisi.',
+            'start.date_format' => 'Format kolom waktu tidak sesuai.',
+            'finish.required' => 'Kolom selesai wajib diisi.',
+            'finish.date_format' => 'Format kolom waktu tidak sesuai.',
+            'finish.after' => 'Waktu selesai harus setelah waktu mulai.',
+            'nama.required' => 'Kolom nama wajib diisi.',
+            'acara.required' => 'Kolom acara wajib diisi.',
+            'id_rooms.required' => 'Kolom ID ruangan wajib diisi.',
+            'id_rooms.exists' => 'Ruangan yang dipilih tidak valid.',
+            'nama_rooms.required' => 'Kolom nama ruangan wajib diisi.',
+            'asalbidang.required' => 'Kolom asal bidang wajib diisi.',
+            'asalbidang.in' => 'Asal bidang tidak valid.',
+            'date.required' => 'Kolom tanggal wajib diisi.',
+            'date.date' => 'Format kolom tanggal tidak valid.',
         ]);
 
         if (!Event::isRoomAvailable($request->id_rooms, $request->start, $request->finish, $request->date)) {
@@ -67,13 +97,13 @@ class BookingController extends Controller
 
         $booking->update($request->all());
 
-        return redirect()->route('booking.index')->with('success', 'Booking updated successfully');
+        return redirect()->route('booking.index')->with('success', 'Jadwal Berhasil Diperbarui');
     }
 
     public function destroy(Event $booking)
     {
         $booking->delete();
-        return redirect()->route('booking.index')->with('success', 'Booking deleted successfully');
+        return redirect()->route('booking.index')->with('success', 'Jadwal Berhasil Dihapus');
     }
 
     public function indexroom()
