@@ -43,11 +43,11 @@
                             <input type="date" id="date" name="date" value="{{ $booking->date }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                         </div>
                         <div>
-                            <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start Time</label>
+                            <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Mulai</label>
                             <input type="time" id="start" name="start" value="{{ $booking->start }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                         </div>
                         <div>
-                            <label for="finish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Finish Time</label>
+                            <label for="finish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Selesai</label>
                             <input type="time" id="finish" name="finish" value="{{ $booking->finish }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                         </div>
                         <input type="hidden" id="nama_rooms" name="nama_rooms" value="{{ $booking->nama_rooms }}" />

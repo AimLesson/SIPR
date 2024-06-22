@@ -29,14 +29,16 @@
                                     Date
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                    Start Time
+                                    Waktu Mulai
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                    Finish Time
+                                    Waktu Selesai
                                 </th>
+                                @if (Auth::user()->role == 'admin')
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                                     Action
                                 </th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
@@ -63,6 +65,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
                                         {{ $booking->finish }}
                                     </td>
+                                    @if (Auth::user()->role == 'admin')
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="{{ route('booking.edit', $booking) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                         <form action="{{ route('booking.destroy', $booking) }}" method="POST" style="display:inline;">
@@ -71,13 +74,16 @@
                                             <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
                                         </form>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             <tr>
-                                <td colspan="8" class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'user')
+                                <td colspan="{{ Auth::user()->role == 'admin' ? '8' : '7' }}" class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="{{ route('booking.create') }}" class="text-green-600 hover:text-green-900">Tambah Jadwal</a>
                                 </td>
-                            </tr>
+                                @endif
+                            </tr>                            
                         </tbody>
                     </table>
                 </div>
