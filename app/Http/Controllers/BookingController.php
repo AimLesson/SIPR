@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\eventbackup;
 use App\Models\Room;
 
 class BookingController extends Controller
@@ -53,6 +54,7 @@ class BookingController extends Controller
         }
 
         Event::create($request->all());
+        eventbackup::create($request->all());
 
         return redirect()->route('booking.create')->with('success', 'Ruang berhasil dibooking');
     }
