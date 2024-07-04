@@ -10,7 +10,7 @@
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <a href="{{ route('dashboard') }}" class="flex items-center ps-2.5 mb-5">
             <img src="{{ asset('logo.png') }}" class="h-10 me-3 sm:h-11" alt="SIPUR Logo" />
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">SIPUR</span>
+            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">SIPIJAR</span>
          </a>
        <ul class="space-y-2 font-medium">
           <li>
