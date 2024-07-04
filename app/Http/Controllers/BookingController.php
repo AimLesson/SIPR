@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Room;
 use App\Models\Event;
 use App\Models\eventbackup;
-use App\Models\Room;
+use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
     public function index()
     {
-        $bookings = Event::all();
+        $currentDateTime = Carbon::now();
+    
+        // Filter bookings to include only future events
+        $bookings = Event::where(function ($query) use ($currentDateTime) {
+            $query->where('date', '>', $currentDateTime->toDateString())
+                  ->orWhere(function ($query) use ($currentDateTime) {
+                      $query->where('date', '=', $currentDateTime->toDateString())
+                            ->where('finish', '>', $currentDateTime->toTimeString());
+                  });
+        })->get()->groupBy('nama_rooms');
+    
         return view('booking.index', compact('bookings'));
     }
+    
 
     public function create()
     {
@@ -26,9 +38,10 @@ class BookingController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'acara' => 'required|string|max:255',
+            'peserta' => 'required|string|max:255',
             'id_rooms' => 'required|exists:rooms,id',
             'nama_rooms' => 'required|string|max:255',
-            'asalbidang' => 'required|in:Rendal,LITBANG,Ekonomi,PPM,Sekretariat',
+            'asalbidang' => 'required|string|max:255',
             'date' => 'required|date',
             'start' => 'required|date_format:H:i',
             'finish' => 'required|date_format:H:i|after:start',
@@ -70,9 +83,10 @@ class BookingController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'acara' => 'required|string|max:255',
+            'peserta' => 'required|string|max:255',
             'id_rooms' => 'required|exists:rooms,id',
             'nama_rooms' => 'required|string|max:255',
-            'asalbidang' => 'required|in:Rendal,LITBANG,Ekonomi,PPM,Sekretariat',
+            'asalbidang' => 'required|string|max:255',
             'date' => 'required|date',
             'start' => 'required|date_format:H:i',
             'finish' => 'required|date_format:H:i|after:start',

@@ -17,7 +17,8 @@ class Event extends Model
         'asalbidang',
         'date',
         'start',
-        'finish'
+        'finish',
+        'peserta',
     ];
 
     public function room()

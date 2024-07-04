@@ -20,6 +20,14 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        .max-w-acara {
+        max-width: 200px; /* Set your desired max width here */
+        word-wrap: break-word;
+        white-space: normal;
+    }
+    </style>
 </head>
 
 <body class="font-sans antialiased">

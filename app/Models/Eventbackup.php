@@ -19,7 +19,8 @@ class eventbackup extends Model
         'asalbidang',
         'date',
         'start',
-        'finish'
+        'finish',
+        'peserta',
     ];
 
     public function room()
