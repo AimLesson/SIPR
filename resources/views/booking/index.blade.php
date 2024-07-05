@@ -7,14 +7,17 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="mb-4">
-                <button id="downloadExcel" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <div class="flex p-1 m-3">
+                <button id="downloadExcel" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                     Download Excel
                 </button>
-                <button id="downloadPDF" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                <button id="downloadPDF" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                     Download PDF
                 </button>
-            </div>
+                <a href="{{ route('booking.create') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    Tambah Jadwal
+                </a>
+            </div>            
             @foreach ($bookings as $room => $roomBookings)
                 <div class="p-4 relative overflow-x-auto shadow-md sm:rounded-lg mb-8">
                     <h3 class="uppercase text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{{ $room }}</h3>
@@ -81,23 +84,18 @@
                                     </td>
                                     @if (Auth::user()->role == 'admin')
                                     <td class="px-6 py-4 text-right text-sm font-medium">
-                                        <a href="{{ route('booking.edit', $booking) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                        <form action="{{ route('booking.destroy', $booking) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
-                                        </form>
+                                        <div class="flex">
+                                            <a href="{{ route('booking.edit', $booking) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <form action="{{ route('booking.destroy', $booking) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
+                                            </form>
+                                        </div>
                                     </td>
                                     @endif
                                 </tr>
-                            @endforeach
-                            <tr>
-                                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'user')
-                                <td colspan="{{ Auth::user()->role == 'admin' ? '9' : '8' }}" class="px-6 py-4 text-right text-sm font-medium">
-                                    <a href="{{ route('booking.create') }}" class="text-green-600 hover:text-green-900">Tambah Jadwal</a>
-                                </td>
-                                @endif
-                            </tr>                            
+                            @endforeach                        
                         </tbody>
                     </table>
                 </div>
