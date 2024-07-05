@@ -30,13 +30,9 @@
                         </div>                        
                         <div>
                             <label for="asalbidang" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asal Bidang</label>
-                            <select id="asalbidang" name="asalbidang" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                <option value="Rendal" {{ $booking->asalbidang == 'Rendal' ? 'selected' : '' }}>Rendal</option>
-                                <option value="LITBANG" {{ $booking->asalbidang == 'LITBANG' ? 'selected' : '' }}>LITBANG</option>
-                                <option value="Ekonomi" {{ $booking->asalbidang == 'Ekonomi' ? 'selected' : '' }}>Ekonomi</option>
-                                <option value="PPM" {{ $booking->asalbidang == 'PPM' ? 'selected' : '' }}>PPM</option>
-                                <option value="Sekretariat" {{ $booking->asalbidang == 'Sekretariat' ? 'selected' : '' }}>Sekretariat</option>
-                            </select>
+                            <input type="text" id="asalbidang" name="asalbidang"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Asal Bidang" value="{{ $booking->asalbidang }}" required />
                         </div>
                         <div>
                             <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
