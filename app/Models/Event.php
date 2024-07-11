@@ -26,9 +26,9 @@ class Event extends Model
         return $this->belongsTo(Room::class, 'id_rooms');
     }
 
-    public static function isRoomAvailable($roomId, $startTime, $endTime, $date)
+    public static function isRoomAvailable($roomId, $startTime, $endTime, $date, $excludeEventId = null)
     {
-        return !self::where('id_rooms', $roomId)
+        $query = self::where('id_rooms', $roomId)
                     ->whereDate('date', $date)
                     ->where(function($query) use ($startTime, $endTime) {
                         $query->whereBetween('start', [$startTime, $endTime])
@@ -37,7 +37,14 @@ class Event extends Model
                                   $query->where('start', '<', $startTime)
                                         ->where('finish', '>', $endTime);
                               });
-                    })->exists();
+                    });
+    
+        if ($excludeEventId) {
+            $query->where('id', '<>', $excludeEventId);
+        }
+    
+        return !$query->exists();
     }
+    
     
 }

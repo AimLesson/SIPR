@@ -106,15 +106,16 @@ class BookingController extends Controller
             'date.required' => 'Kolom tanggal wajib diisi.',
             'date.date' => 'Format kolom tanggal tidak valid.',
         ]);
-
-        if (!Event::isRoomAvailable($request->id_rooms, $request->start, $request->finish, $request->date)) {
+    
+        if (!Event::isRoomAvailable($request->id_rooms, $request->start, $request->finish, $request->date, $booking->id)) {
             return back()->withErrors(['msg' => 'Ruangan tidak tersedia di jadwal yang ditentukan']);
         }
-
+    
         $booking->update($request->all());
-
+    
         return redirect()->route('booking.index')->with('success', 'Jadwal Berhasil Diperbarui');
     }
+    
 
     public function destroy(Event $booking)
     {
