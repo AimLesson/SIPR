@@ -1,61 +1,57 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Detail Kegiatan') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="p-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <form action="{{ route('booking.update', $booking) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
-                            <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Penanggung Jawab</label>
-                            <input type="text" id="nama" name="nama" value="{{ $booking->nama }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            <label for="nama" class="block mb-2 text-sm font-medium text-gray-900">Nama Penanggung Jawab</label>
+                            <input type="text" id="nama" name="nama" value="{{ $booking->nama }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                         </div>
                         <div>
-                            <label for="acara" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Acara</label>
-                            <input type="text" id="acara" name="acara" value="{{ $booking->acara }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            <label for="acara" class="block mb-2 text-sm font-medium text-gray-900 ">Acara</label>
+                            <input type="text" id="acara" name="acara" value="{{ $booking->acara }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                         </div>
                         <div>
-                            <label for="id_rooms" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Ruang</label>
-                            <select id="id_rooms" name="id_rooms" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                <option value="1" {{ $booking->nama_rooms == 'Ruang Pangripta' ? 'selected' : '' }}>Ruang Pangripta</option>
-                                <option value="2" {{ $booking->nama_rooms == 'Ruang Aula' ? 'selected' : '' }}>Ruang Aula</option>
-                                <option value="3" {{ $booking->nama_rooms == 'Ruang Tengah' ? 'selected' : '' }}>Ruang Tengah</option>
-                            </select>
-                        </div>                        
-                        <div>
-                            <label for="asalbidang" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asal Bidang</label>
-                            <select id="asalbidang" name="asalbidang" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                <option value="SEKRETARIAT" {{ $booking->asalbidang == 'SEKRETARIAT' ? 'selected' : '' }}>SEKRETARIAT</option>
-                                <option value="RENDALEV" {{ $booking->asalbidang == 'RENDALEV' ? 'selected' : '' }}>RENDALEV</option>
-                                <option value="IKA" {{ $booking->asalbidang == 'IKA' ? 'selected' : '' }}>IKA</option>
-                                <option value="PPM" {{ $booking->asalbidang == 'PPM' ? 'selected' : '' }}>PPM</option>
-                                <option value="PSDA" {{ $booking->asalbidang == 'PSDA' ? 'selected' : '' }}>PSDA</option>
-                                <option value="LITBANG" {{ $booking->asalbidang == 'LITBANG' ? 'selected' : '' }}>LITBANG</option>
-                                <option value="LAINNYA" {{ $booking->asalbidang == 'LAINNYA' ? 'selected' : '' }}>LAINYA</option>
+                            <label for="id_rooms" class="block mb-2 text-sm font-medium text-gray-900 ">Nama Ruang</label>
+                            <select id="id_rooms" name="id_rooms" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>
+                                @foreach ($rooms as $room)
+                                    <option value="{{ $room->id }}" {{ $booking->id_rooms == $room->id ? 'selected' : '' }}>{{ $room->nama_ruang }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div>
-                            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal</label>
-                            <input type="date" id="date" name="date" value="{{ $booking->date }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            <label for="asalbidang" class="block mb-2 text-sm font-medium text-gray-900 ">Asal Bidang</label>
+                            <select id="asalbidang" name="asalbidang" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>
+                                <option value="Informasi dan Komunikasi Publik" {{ $booking->asalbidang == 'Informasi dan Komunikasi Publik' ? 'selected' : '' }}>Informasi dan Komunikasi Publik</option>
+                                <option value="Aplikasi informatika" {{ $booking->asalbidang == 'Aplikasi informatika' ? 'selected' : '' }}>Aplikasi informatika</option>
+                                <option value="Statistik, Persandian dan Infrastruktur Teknologi Informasi dan Komunikasi" {{ $booking->asalbidang == 'Statistik, Persandian dan Infrastruktur Teknologi Informasi dan Komunikasi' ? 'selected' : '' }}>Statistik, Persandian dan Infrastruktur Teknologi Informasi dan Komunikasi</option>
+                            </select>
                         </div>
                         <div>
-                            <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Mulai</label>
-                            <input type="time" id="start" name="start" value="{{ $booking->start }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 ">Tanggal</label>
+                            <input type="date" id="date" name="date" value="{{ $booking->date }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                         </div>
                         <div>
-                            <label for="finish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Selesai</label>
-                            <input type="time" id="finish" name="finish" value="{{ $booking->finish }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            <label for="start" class="block mb-2 text-sm font-medium text-gray-900 ">Waktu Mulai</label>
+                            <input type="time" id="start" name="start" value="{{ $booking->start }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                         </div>
                         <div>
-                            <label for="jumlah_peserta" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah Peserta</label>
+                            <label for="finish" class="block mb-2 text-sm font-medium text-gray-900 ">Waktu Selesai</label>
+                            <input type="time" id="finish" name="finish" value="{{ $booking->finish }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
+                        </div>
+                        <div>
+                            <label for="jumlah_peserta" class="block mb-2 text-sm font-medium text-gray-900 ">Jumlah Peserta</label>
                             <input type="number" id="peserta" name="peserta" value="{{ $booking->peserta }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Jumlah Peserta" required />
                         </div>
                         <input type="hidden" id="nama_rooms" name="nama_rooms" value="{{ $booking->nama_rooms }}" />
@@ -68,23 +64,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
+        const rooms = @json($rooms);
+
         document.getElementById('id_rooms').addEventListener('change', function() {
-            const roomNames = {
-                "1": "Ruang Pangripta",
-                "2": "Ruang Aula",
-                "3": "Ruang Tengah"
-            };
-            document.getElementById('nama_rooms').value = roomNames[this.value];
+            const selectedRoomId = this.value;
+            const selectedRoom = rooms.find(room => room.id == selectedRoomId);
+            document.getElementById('nama_rooms').value = selectedRoom ? selectedRoom.nama_ruang : '';
         });
 
         // Set initial value based on the selected room
         const initialRoomId = document.getElementById('id_rooms').value;
-        const roomNames = {
-            "1": "Ruang Pangripta",
-            "2": "Ruang Aula",
-            "3": "Ruang Tengah"
-        };
-        document.getElementById('nama_rooms').value = roomNames[initialRoomId];
+        const initialRoom = rooms.find(room => room.id == initialRoomId);
+        document.getElementById('nama_rooms').value = initialRoom ? initialRoom.nama_ruang : '';
 
         @if (session('success'))
             toastr.success("{{ session('success') }}");

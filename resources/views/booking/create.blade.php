@@ -1,70 +1,66 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Buat Jadwal Kegiatan') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="p-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <form action="{{ route('booking.store') }}" method="POST">
                     @csrf
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
-                            <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Penanggung Jawab</label>
+                            <label for="nama" class="block mb-2 text-sm font-medium text-gray-900">Nama Penanggung Jawab</label>
                             <input type="text" id="nama" name="nama"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Nama" required />
                         </div>
                         <div>
-                            <label for="acara" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Acara</label>
+                            <label for="acara" class="block mb-2 text-sm font-medium text-gray-900 ">Acara</label>
                             <input type="text" id="acara" name="acara"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Acara" required />
                         </div>
                         <div>
-                            <label for="id_rooms" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Ruang</label>
+                            <label for="id_rooms" class="block mb-2 text-sm font-medium text-gray-900 ">Nama Ruang</label>
                             <select id="id_rooms" name="id_rooms"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 required>
-                                <option value="1">Ruang Pangripta</option>
-                                <option value="2">Ruang Aula</option>
-                                <option value="3">Ruang Tengah</option>
+                                @foreach ($rooms as $room)
+                                    <option value="{{ $room->id }}">{{ $room->nama_ruang }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div>
-                            <label for="asalbidang" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asal Bidang</label>
-                                <select id="asalbidang" name="asalbidang" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                    <option value="SEKRETARIAT">SEKRETARIAT</option>
-                                    <option value="RENDALEV">RENDALEV</option>
-                                    <option value="IKA">IKA</option>
-                                    <option value="PPM">PPM</option>
-                                    <option value="PSDA">PSDA</option>
-                                    <option value="LITBANG">LITBANG</option>
-                                    <option value="LAINNYA">LAINYA</option>
-                                </select>
+                            <label for="asalbidang" class="block mb-2 text-sm font-medium text-gray-900 ">Asal Bidang</label>
+                                <select id="asalbidang" name="asalbidang" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>
+                                    <option value="Informasi dan Komunikasi Publik">Informasi dan Komunikasi Publik</option>
+                                    <option value="Aplikasi informatika">Aplikasi informatika</option>
+                                    <option value="Statistik, Persandian dan Infrastruktur Teknologi Informasi dan Komunikasi">Statistik, Persandian dan Infrastruktur Teknologi Informasi dan Komunikasi</option>
+                                    </select>
                         </div>
                         <div>
-                            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal</label>
-                            <input type="date" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 ">Tanggal</label>
+                            <input type="date" id="date" name="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                         </div>
                         <div>
-                            <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Mulai</label>
+                            <label for="start" class="block mb-2 text-sm font-medium text-gray-900 ">Waktu Mulai</label>
                             <input type="time" id="start" name="start"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 required />
                         </div>
                         <div>
-                            <label for="finish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waktu Selesai</label>
+                            <label for="finish" class="block mb-2 text-sm font-medium text-gray-900 ">Waktu Selesai</label>
                             <input type="time" id="finish" name="finish"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 required />
                         </div>
                         <div>
-                            <label for="jumlah_peserta" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah Peserta</label>
+                            <label for="jumlah_peserta" class="block mb-2 text-sm font-medium text-gray-900 ">Jumlah Peserta</label>
                             <input type="number" id="peserta" name="peserta"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Jumlah Peserta" required />
                         </div>
                         <input type="hidden" id="nama_rooms" name="nama_rooms" value="" />
