@@ -15,6 +15,9 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -28,14 +31,14 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         @include('layouts.sidebar')
 
         <div class="p-4 sm:ml-64">
-            <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg">
+            <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
                 <!-- Page Heading -->
                 @if (isset($header))
-                    <header class="bg-white shadow">
+                    <header class="bg-white dark:bg-gray-800 shadow">
                         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                             {{ $header }}
                         </div>
@@ -52,6 +55,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        new DataTable('#example');
+    </script>
 </body>
 
 </html>
