@@ -31,6 +31,8 @@
                                 <option value="1">Ruang Pangripta</option>
                                 <option value="2">Ruang Aula</option>
                                 <option value="3">Ruang Tengah</option>
+                                <option value="4">Ruang Krenova</option>                                
+                                <option value="5">Ruang Inovasi</option>
                             </select>
                         </div>
                         <div>

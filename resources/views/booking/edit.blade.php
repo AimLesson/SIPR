@@ -26,6 +26,8 @@
                                 <option value="1" {{ $booking->nama_rooms == 'Ruang Pangripta' ? 'selected' : '' }}>Ruang Pangripta</option>
                                 <option value="2" {{ $booking->nama_rooms == 'Ruang Aula' ? 'selected' : '' }}>Ruang Aula</option>
                                 <option value="3" {{ $booking->nama_rooms == 'Ruang Tengah' ? 'selected' : '' }}>Ruang Tengah</option>
+                                <option value="4" {{ $booking->nama_rooms == 'Ruang Krenova' ? 'selected' : '' }}>Ruang Krenova</option>
+                                <option value="5" {{ $booking->nama_rooms == 'Ruang Inovasi' ? 'selected' : '' }}>Ruang Inovasi</option>
                             </select>
                         </div>                        
                         <div>
